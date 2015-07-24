@@ -1,11 +1,18 @@
-{
-  "name": "gym-timetable",
-  "version": "0.0.1",
-  "devDependencies": {
-    "grunt": "latest",
-    "grunt-contrib-watch": "latest", // плагин для слежки за изменениями файлов
-    "grunt-contrib-sass": "latest", // плагин для компиляции SASS в CSS 
-    "grunt-contrib-coffee": "latest", // плагин для компиляции Coffee файлов в JS
-    "grunt-contrib-requirejs": "latest" // плагин для минификации и конкатенации AMD require.js модулей 
-  }
+{ 
+	"name": "gym-timetable",
+	"version": "0.0.1",
+	"author": { 
+		"name": "Dmitry Bondarchuk", 
+		"email": "dvbondarchuk@gmail.com"
+	},
+	"devDependencies": {
+		"grunt": "latest",
+		"grunt-contrib-watch": "latest", 
+		"grunt-contrib-sass": "latest", 
+		"grunt-contrib-coffee": "latest",
+		"grunt-contrib-requirejs": "latest",
+		"grunt-contrib-concat": "latest",
+		"grunt-css": "latest",
+		"grunt-contrib-uglify": "latest"
+	}
 }
