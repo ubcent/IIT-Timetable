@@ -6,24 +6,25 @@ Number.prototype.zeroPad = function(length) {
 	var days = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
 	var methods = {
 		init: function( options ) {
-			var $table = $('<table />');
+			var $table = $( '<table />' );
 			for(j = 7; j < 24; j++) {
 				$tr = $('<tr />')
 				if(j == 7) {
-					$tr.append($('<td />'));
+					$tr.append( $('<td />') );
 				} else {
 					$tr.append("<td>" + j.zeroPad() + ":00</td>");
 				}
 				for(var i = 0; i < days.length; i++) {
 					if(j != 7) {
-						$tr.append($('<td />'));
+						$tr.append( $('<td contenteditable="true" />') );
 					} else {
-						$tr.append("<td>" + days[i] + "</td>");
+						$tr.append( "<td>" + days[i] + "</td>" );
 					}
 				}
-				$table.append($tr);
+				$table.append( $tr) ;
 			} 
-			this.append($table);
+			this.append( '<a href="#">Добавить событие</a>' );
+			this.append( $table );
 		}, 
 		add: function( options ) {
 			
