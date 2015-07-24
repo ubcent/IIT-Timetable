@@ -21,7 +21,7 @@ Number.prototype.zeroPad = function(length) {
 						$tr.append( "<td>" + days[i] + "</td>" );
 					}
 				}
-				$table.append( $tr) ;
+				$table.append( $tr ) ;
 			} 
 			this.append( '<a href="#">Добавить событие</a>' );
 			this.append( $table );
