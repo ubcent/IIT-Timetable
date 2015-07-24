@@ -1,1 +1,1 @@
-Generate timetable
+Generate timetable for gym website
