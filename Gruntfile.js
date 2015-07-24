@@ -33,11 +33,9 @@ module.exports = function(grunt) {
 
   });
 
-  //погружаем все необходимые модули
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-sass');
 
-  //забиваем в задачу по умолчению все наши задачи
   grunt.registerTask('default', ['concat', 'sass']);
 };
