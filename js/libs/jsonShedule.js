@@ -8,8 +8,7 @@ Number.prototype.zeroPad = function(length) {
 			options = $.extend({
 				json: "[]",
 				template_path: "views/table.mustache",
-				partial_template_path: "views/event.mustache",
-				time_range: [8, 12]
+				partial_template_path: "views/event.mustache"
 			}, options);
 			var _this = this;
 			if($.trim(options.json) == "") options.json = "[]";
