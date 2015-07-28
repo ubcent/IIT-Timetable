@@ -8,7 +8,8 @@ Number.prototype.zeroPad = function(length) {
 	var methods = {
 		init: function( options ) {
 			options = $.extend({
-				json: ""
+				json: "",
+				template_path: "views/table.mustache.html"
 			}, options);
 			var data = $.parseJSON(options.json);
 			var time_min = 24, time_max = 0;
@@ -20,7 +21,13 @@ Number.prototype.zeroPad = function(length) {
 			});
 			time_min = parseInt(time_min);
 			time_max = parseInt(time_max);
-			var $table = $( '<table />' );
+
+			$.get(options.template_path, function(template) {
+				var rendered = Mustache.render(template, {events: [{name: "Ololo"}]});
+				this.append( rendered );
+			});
+
+			/*var $table = $( '<table />' );
 			for(j = time_min-1; j <= time_max; j++) {
 				$tr = $('<tr class="' + (j == time_min-1 ? '' : j)  + 'time" />')
 				if(j == time_min-1) {
@@ -43,9 +50,8 @@ Number.prototype.zeroPad = function(length) {
 						$($table).jsonShedule( "add", {name: _v.name, start: _v.start, duration: _v.duration, timec: i, dayw: index} );
 					});
 				});
-			});
-			this.before( '<a href="#" id="event_add">Добавить событие</a>' );
-			this.append( $table );
+			});*/
+			//this.before( '<a href="#" id="event_add">Добавить событие</a>' );
 		}, 
 		add: function( options ) {
 			options = $.extend({
