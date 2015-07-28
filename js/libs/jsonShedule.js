@@ -35,15 +35,36 @@ Number.prototype.zeroPad = function(length) {
 			options = $.extend({
 				tsec: "08:00",
 				dayw: "mo",
-				partial_template_path: "views/event.mustache"
+				partial_template_path: "views/event.mustache",
+				template_path: "views/timeline.mustache"
 			}, options);
 			var _this = this;
 			$.get(options.partial_template_path, function( partial ) {
-				if($(_this).find('tr').length <= 1) {
-					$(_this.append())
+				if($(_this).find('[data-propname="time"]').length < 1) {
+					$.get(options.template_path, function( template ) {
+						options[options.dayw] = options;
+						$(_this).find('[data-root="true"]').append(Mustache.render(template, options, {event: partial}));
+					});
+				} else if($(_this).find('[data-time="' + options.tsec + '"]').length == 0) {
+					dif = 10;
+					this_time = parseInt(options.tsec.split(':')[0]);
+					$.each($(_this).find('[data-propname="time"]'), function( index, value ) {
+						_dif = parseInt($(value).attr('data-time').split(':')[0]) - this_time;
+						if(Math.abs(_dif) < Math.abs(dif)) dif = _dif;
+					});
+					$.get(options.template_path, function( template ) {
+						options[options.dayw] = options;
+						if(dif < 0) {
+							$(_this).find('[data-time="' + (this_time + dif).zeroPad() + ':00"]').after(Mustache.render(template, options, {event: partial}));
+						} else {
+							$(_this).find('[data-time="' + (this_time + dif).zeroPad() + ':00"]').before(Mustache.render(template, options, {event: partial}))
+						}
+					});
+				} else {
+
 				}
-				$(_this).find('tr[data-time="' + options.tsec + '"] > td.' + options.dayw).append( Mustache.render(partial, options) );
-				console.log(Mustache.render(partial, options));
+				//$(_this).find('tr[data-time="' + options.tsec + '"] > td.' + options.dayw).append( Mustache.render(partial, options) );
+				//console.log(Mustache.render(partial, options));
 			});
 		},
 		parse: function( options ) {
