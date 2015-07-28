@@ -41,6 +41,7 @@ Number.prototype.zeroPad = function(length) {
 			var _this = this;
 			$.get(options.partial_template_path, function( partial ) {
 				if($(_this).find('[data-propname="time"]').length < 1) {
+					console.log('1111');
 					$.get(options.template_path, function( template ) {
 						options[options.dayw] = options;
 						$(_this).find('[data-root="true"]').append(Mustache.render(template, options, {event: partial}));
@@ -61,10 +62,8 @@ Number.prototype.zeroPad = function(length) {
 						}
 					});
 				} else {
-
+					$(_this).find('[data-time="' + options.tsec + '"] [data-propname="' + options.dayw + '"]').append( Mustache.render(partial, options) );
 				}
-				//$(_this).find('tr[data-time="' + options.tsec + '"] > td.' + options.dayw).append( Mustache.render(partial, options) );
-				//console.log(Mustache.render(partial, options));
 			});
 		},
 		parse: function( options ) {

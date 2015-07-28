@@ -61,10 +61,8 @@ Number.prototype.zeroPad = function(length) {
 						}
 					});
 				} else {
-
+					$(_this).find('[data-time="' + options.tsec + '"] [data-propname="' + options.dayw + '"]').append( Mustache.render(partial, options) );
 				}
-				//$(_this).find('tr[data-time="' + options.tsec + '"] > td.' + options.dayw).append( Mustache.render(partial, options) );
-				//console.log(Mustache.render(partial, options));
 			});
 		},
 		parse: function( options ) {
