@@ -45,18 +45,22 @@ Number.prototype.zeroPad = function(length) {
 			options = $.extend({
 			}, options);
 			var events = [];
-			timeline = {};
 			$.each($('.timetable [data-propname="time"]'), function( index, value ) {
+				timeline = {};
 				timeline["time"] = $(value).attr('data-time');
-				$.each($(value).find('[data-parent="true"]'), function( i, v ) {
-					timeline[$(v).attr('data-propname')] = {};
-					$.each($(v).find('[data-save="true"]'), function( _i, _v) {
-						timeline[$(v).attr('data-propname')][$(_v).attr('data-propname')] = $(_v).text();
+				$.each($(value).children('[data-parent="true"]'), function( i, v ) {
+					timeline[$(v).attr('data-propname')] = [];
+					$.each($(v).find('[data-parent="true"]'), function( _i, _v) {
+						props = {};
+						$.each($(_v).find('[data-save="true"]'), function( _index, _value ) {
+							props[$(_value).attr('data-propname')] = $(_value).text();
+						});
+						timeline[$(v).attr('data-propname')].push(props);
 					});
 				});
 				events.push(timeline);
 			});
-			return events;
+			return JSON.stringify(events);
 		}
 	};
 	$.fn.jsonShedule = function( method ) {
