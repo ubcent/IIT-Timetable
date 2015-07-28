@@ -30,19 +30,17 @@ Number.prototype.zeroPad = function(length) {
 				}
 				for(var i = 0; i < days.length; i++) {
 					if(j != time_min-1) {
-						$tr.append( $('<td contenteditable="true" class="' + classes[i] + '"" />') );
+						$tr.append( $('<td contenteditable="true" class="' + classes[i] + '" />') );
 					} else {
 						$tr.append( "<td>" + days[i] + "</td>" );
 					}
 				}
 				$table.append( $tr ) ;
 			} 
-			var _this = this;
 			$.each(data, function( index, value ) {
 				$.each(value, function( i, v ) {
 					$.each(v, function( _i, _v ) {
-						methods["add"].apply( this, {name: _v.name, start: _v.start, duration: _v.duration, timec: i, dayw: index} );
-						console.log({name: _v.name, start: _v.start, duration: _v.duration, timec: i, dayw: index});
+						$($table).jsonShedule( "add", {name: _v.name, start: _v.start, duration: _v.duration, timec: i, dayw: index} );
 					});
 				});
 			});
@@ -58,7 +56,8 @@ Number.prototype.zeroPad = function(length) {
 				dayw: "mo"
 			}, options);
 
-			$(this).find('tr.' + options.timec + 'time > td.' + options.dayw).append('<div class="name">' + options.name + '</div>');
+			var $div = $('<div class="event" />').append('<div class="time">' + options.start + '</div>').append('<div class="name">' + options.name + '</div>').append('<div class="duration">' + options.duration + '</div>');
+			$(this).find('tr.' + options.timec + 'time > td.' + options.dayw).append($div);
 		}
 	};
 	$.fn.jsonShedule = function( method ) {
