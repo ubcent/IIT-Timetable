@@ -58,11 +58,14 @@ Number.prototype.zeroPad = function(length) {
 
 			var $div = $('<div class="event" />').append('<div class="time">' + options.start + '</div>').append('<div class="name">' + options.name + '</div>').append('<div class="duration">' + options.duration + '</div>');
 			$(this).find('tr.' + options.timec + 'time > td.' + options.dayw).append($div);
+		},
+		parse: function( options ) {
+
 		}
 	};
 	$.fn.jsonShedule = function( method ) {
 		if ( methods[method] ) {
-			return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+			return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ) );
 		} else if ( typeof method === 'object' || ! method ) {
 			return methods.init.apply( this, arguments );
 		} else {

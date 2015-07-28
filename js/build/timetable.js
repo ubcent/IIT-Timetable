@@ -35,7 +35,7 @@ Number.prototype.zeroPad = function(length) {
 				}
 				for(var i = 0; i < days.length; i++) {
 					if(j != time_min-1) {
-						$tr.append( $('<td contenteditable="true" class="' + classes[i] + '" />') );
+						$tr.append( $('<td class="' + classes[i] + '" />') );
 					} else {
 						$tr.append( "<td>" + days[i] + "</td>" );
 					}
@@ -63,6 +63,9 @@ Number.prototype.zeroPad = function(length) {
 
 			var $div = $('<div class="event" />').append('<div class="time">' + options.start + '</div>').append('<div class="name">' + options.name + '</div>').append('<div class="duration">' + options.duration + '</div>');
 			$(this).find('tr.' + options.timec + 'time > td.' + options.dayw).append($div);
+		},
+		parse: function( options ) {
+			
 		}
 	};
 	$.fn.jsonShedule = function( method ) {
