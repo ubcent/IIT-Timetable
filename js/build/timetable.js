@@ -16,51 +16,26 @@ Number.prototype.zeroPad = function(length) {
 		init: function( options ) {
 			options = $.extend({
 				json: "",
-				template_path: "views/table.mustache.html"
+				template_path: "views/table.mustache",
+				time_range: [8, 12]
 			}, options);
 			var _this = this;
-			var data = $.parseJSON(options.json);
-			var time_min = 24, time_max = 0;
-			$.each(data, function( index, value ) {
-				$.each(value, function( i, v ) {
-					if(i < time_min) time_min = i;
-					if(i > time_max) time_max = i;
-				});
+			var events = $.parseJSON(options.json);
+
+			events.sort(function(a, b) {
+				var m1 = a.time.split(':', 2), m2 = b.time.split(':', 2);
+				m1 = parseInt(m1[0]) * 60 + parseInt(m1[1]);
+				m2 = parseInt(m2[0]) * 60 + parseInt(m2[1]);
+				if(m1 < m2) return 1;
+				if(m1 > m2) return -1;
+				return 0;
 			});
-			time_min = parseInt(time_min);
-			time_max = parseInt(time_max);
 
 			$.get(options.template_path, function(template) {
-				var rendered = Mustache.render(template, {events: [{name: "Ololo"}, {name: "Ololo2"}]});
+				var rendered = Mustache.render(template, {events: events});
 				console.log(rendered);
 				$(_this).append( rendered );
 			});
-
-			/*var $table = $( '<table />' );
-			for(j = time_min-1; j <= time_max; j++) {
-				$tr = $('<tr class="' + (j == time_min-1 ? '' : j)  + 'time" />')
-				if(j == time_min-1) {
-					$tr.append( $('<td />') );
-				} else {
-					$tr.append("<td>" + j.zeroPad() + ":00</td>");
-				}
-				for(var i = 0; i < days.length; i++) {
-					if(j != time_min-1) {
-						$tr.append( $('<td class="' + classes[i] + '" />') );
-					} else {
-						$tr.append( "<td>" + days[i] + "</td>" );
-					}
-				}
-				$table.append( $tr ) ;
-			} 
-			$.each(data, function( index, value ) {
-				$.each(value, function( i, v ) {
-					$.each(v, function( _i, _v ) {
-						$($table).jsonShedule( "add", {name: _v.name, start: _v.start, duration: _v.duration, timec: i, dayw: index} );
-					});
-				});
-			});*/
-			//this.before( '<a href="#" id="event_add">Добавить событие</a>' );
 		}, 
 		add: function( options ) {
 			options = $.extend({

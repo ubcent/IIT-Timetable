@@ -1,12 +1,4 @@
-<!doctype html>
-<html>
-<head>
-	<meta charset=utf-8>
-	<link rel="stylesheet" href="css/build/global.css">
-	<script type="text/javascript" src="js/build/timetable.js"></script>
-</head>	
-<body>
-	<textarea id="json">[
+[
   {
     "time": "08:00",
     "mo": [
@@ -63,9 +55,4 @@
     ]
 
   }
-]</textarea>
-	<div class="timetable">
-	    
-	</div>
-</body>
-</html>
+]

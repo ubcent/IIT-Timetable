@@ -1,0 +1,71 @@
+<table>
+    <tr><td></td><td>ПН</td><td>ВТ</td><td>СР</td><td>ЧТ</td><td>ПТ</td><td>СБ</td><td>ВС</td></tr>
+    {{#events}}
+    <tr>
+        <td>{{time}}</td>
+        <td class="mo">
+            <div class="event">
+                {{#mo}}
+                    <div class="time">{{start}}</div>
+                    <div class="name">{{name}}</div>
+                    <div class="duration">{{duration}}</div>
+                {{/mo}}
+            </div>
+        </td>
+        <td class="tu">
+            <div class="event">
+                {{#tu}}
+                    <div class="time">{{start}}</div>
+                    <div class="name">{{name}}</div>
+                    <div class="duration">{{duration}}</div>
+                {{/tu}}
+            </div>
+        </td>
+        <td class="we">
+            <div class="event">
+                {{#we}}
+                <div class="time">{{start}}</div>
+                <div class="name">{{name}}</div>
+                <div class="duration">{{duration}}</div>
+                {{/we}}
+            </div>
+        </td>
+        <td class="th">
+            <div class="event">
+                {{#th}}
+                <div class="time">{{start}}</div>
+                <div class="name">{{name}}</div>
+                <div class="duration">{{duration}}</div>
+                {{/th}}
+            </div>
+        </td>
+        <td class="fr">
+            <div class="event">
+                {{#fr}}
+                <div class="time">{{start}}</div>
+                <div class="name">{{name}}</div>
+                <div class="duration">{{duration}}</div>
+                {{/fr}}
+            </div>
+        </td>
+        <td class="sat">
+            <div class="event">
+                {{#sat}}
+                <div class="time">{{start}}</div>
+                <div class="name">{{name}}</div>
+                <div class="duration">{{duration}}</div>
+                {{/sat}}
+            </div>
+        </td>
+        <td class="san">
+            <div class="event">
+                {{#san}}
+                <div class="time">{{start}}</div>
+                <div class="name">{{name}}</div>
+                <div class="duration">{{duration}}</div>
+                {{/san}}
+            </div>
+        </td>
+    </tr>
+    {{/events}}
+</table>
