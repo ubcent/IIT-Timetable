@@ -45,7 +45,7 @@ Number.prototype.zeroPad = function(length) {
 						$(_this).find('[data-root="true"]').append(Mustache.render(template, options, {event: partial}));
 					});
 				} else if($(_this).find('[data-time="' + options.tsec + '"]').length == 0) {
-					dif = 10;
+					dif = 24;
 					this_time = parseInt(options.tsec.split(':')[0]);
 					$.each($(_this).find('[data-propname="time"]'), function( index, value ) {
 						_dif = parseInt($(value).attr('data-time').split(':')[0]) - this_time;
