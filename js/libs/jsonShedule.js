@@ -30,7 +30,7 @@ Number.prototype.zeroPad = function(length) {
 				}
 				for(var i = 0; i < days.length; i++) {
 					if(j != time_min-1) {
-						$tr.append( $('<td contenteditable="true" class="' + classes[i] + '" />') );
+						$tr.append( $('<td class="' + classes[i] + '" />') );
 					} else {
 						$tr.append( "<td>" + days[i] + "</td>" );
 					}
