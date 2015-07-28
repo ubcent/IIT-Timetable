@@ -6,13 +6,15 @@ Number.prototype.zeroPad = function(length) {
 	var methods = {
 		init: function( options ) {
 			options = $.extend({
-				json: "",
+				json: "[]",
 				template_path: "views/table.mustache",
 				partial_template_path: "views/event.mustache",
 				time_range: [8, 12]
 			}, options);
 			var _this = this;
 			var events = $.parseJSON(options.json);
+
+			if($.trim(options.json) == "") options.json = "[]";
 
 			events.sort(function(a, b) {
 				var m1 = a.time.split(':', 2), m2 = b.time.split(':', 2);
@@ -37,6 +39,9 @@ Number.prototype.zeroPad = function(length) {
 			}, options);
 			var _this = this;
 			$.get(options.partial_template_path, function( partial ) {
+				if($(_this).find('tr').length <= 1) {
+					$(_this.append())
+				}
 				$(_this).find('tr[data-time="' + options.tsec + '"] > td.' + options.dayw).append( Mustache.render(partial, options) );
 				console.log(Mustache.render(partial, options));
 			});

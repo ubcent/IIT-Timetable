@@ -6,7 +6,7 @@ Number.prototype.zeroPad = function(length) {
 	var methods = {
 		init: function( options ) {
 			options = $.extend({
-				json: "",
+				json: "[]",
 				template_path: "views/table.mustache",
 				partial_template_path: "views/event.mustache",
 				time_range: [8, 12]

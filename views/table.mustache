@@ -1,43 +1,6 @@
 <table>
     <tr><td></td><td>ПН</td><td>ВТ</td><td>СР</td><td>ЧТ</td><td>ПТ</td><td>СБ</td><td>ВС</td></tr>
     {{#events}}
-    <tr data-propname="time" data-time="{{time}}">
-        <td>{{time}}</td>
-        <td data-propname="mo" data-parent="true" class="mo">
-            {{#mo}}
-                {{> event}}
-            {{/mo}}
-        </td>
-        <td data-propname="tu" data-parent="true" class="tu">
-            {{#tu}}
-                {{> event}}
-            {{/tu}}
-        </td>
-        <td  data-propname="we" data-parent="true" class="we">
-            {{#we}}
-                {{> event}}
-            {{/we}}
-        </td>
-        <td  data-propname="th" data-parent="true" class="th">
-            {{#th}}
-                {{> event}}
-            {{/th}}
-        </td>
-        <td data-propname="fr" data-parent="true" class="fr">
-            {{#fr}}
-                {{> event}}
-            {{/fr}}
-        </td>
-        <td data-propname="sat" data-parent="true" class="sat">
-            {{#sat}}
-                {{> event}}
-            {{/sat}}
-        </td>
-        <td data-propname="san" data-parent="true" class="san">
-            {{#san}}
-                {{> event}}
-            {{/san}}
-        </td>
-    </tr>
+        {{> timeline}}
     {{/events}}
 </table>
