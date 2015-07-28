@@ -9,30 +9,61 @@ Number.prototype.zeroPad = function(length) {
 };
 (function( $ ) {
 	var days = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
+	var classes = ['mo', 'tu', 'we', 'th', 'fr', 'sat', 'san'];
 	var methods = {
 		init: function( options ) {
+			options = $.extend({
+				json: ""
+			}, options);
+			var data = $.parseJSON(options.json);
+			var time_min = 24, time_max = 0;
+			$.each(data, function( index, value ) {
+				$.each(value, function( i, v ) {
+					if(i < time_min) time_min = i;
+					if(i > time_max) time_max = i;
+				});
+			});
+			time_min = parseInt(time_min);
+			time_max = parseInt(time_max);
 			var $table = $( '<table />' );
-			for(j = 7; j < 24; j++) {
-				$tr = $('<tr />')
-				if(j == 7) {
+			for(j = time_min-1; j <= time_max; j++) {
+				$tr = $('<tr class="' + (j == time_min-1 ? '' : j)  + 'time" />')
+				if(j == time_min-1) {
 					$tr.append( $('<td />') );
 				} else {
 					$tr.append("<td>" + j.zeroPad() + ":00</td>");
 				}
 				for(var i = 0; i < days.length; i++) {
-					if(j != 7) {
-						$tr.append( $('<td contenteditable="true" />') );
+					if(j != time_min-1) {
+						$tr.append( $('<td contenteditable="true" class="' + classes[i] + '"" />') );
 					} else {
 						$tr.append( "<td>" + days[i] + "</td>" );
 					}
 				}
 				$table.append( $tr ) ;
 			} 
-			this.append( '<a href="#">Добавить событие</a>' );
+			var _this = this;
+			$.each(data, function( index, value ) {
+				$.each(value, function( i, v ) {
+					$.each(v, function( _i, _v ) {
+						methods["add"].apply( this, {name: _v.name, start: _v.start, duration: _v.duration, timec: i, dayw: index} );
+						console.log({name: _v.name, start: _v.start, duration: _v.duration, timec: i, dayw: index});
+					});
+				});
+			});
+			this.before( '<a href="#" id="event_add">Добавить событие</a>' );
 			this.append( $table );
 		}, 
 		add: function( options ) {
-			
+			options = $.extend({
+				name: "Без имени",
+				start: "08:00",
+				duration: "60",
+				timec: "8",
+				dayw: "mo"
+			}, options);
+
+			$(this).find('tr.' + options.timec + 'time > td.' + options.dayw).append('<div class="name">' + options.name + '</div>');
 		}
 	};
 	$.fn.jsonShedule = function( method ) {
@@ -46,5 +77,6 @@ Number.prototype.zeroPad = function(length) {
 	}
 })(jQuery);
 $(function() {
-	$('.timetable').jsonShedule();
+	$('.timetable').jsonShedule({json: $("#json").text()});
+	$('.timetable').jsonShedule('add');
 });

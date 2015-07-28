@@ -1,3 +1,4 @@
 $(function() {
-	$('.timetable').jsonShedule();
+	$('.timetable').jsonShedule({json: $("#json").text()});
+	$('.timetable').jsonShedule('add');
 });
