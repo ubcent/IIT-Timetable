@@ -9,8 +9,10 @@ Number.prototype.zeroPad = function(length) {
 		init: function( options ) {
 			options = $.extend({
 				json: "",
-				template_path: "views/table.mustache.html"
+				template_path: "views/table.mustache.html",
+				tame_range: [8, 12]
 			}, options);
+			var _this = this;
 			var data = $.parseJSON(options.json);
 			var time_min = 24, time_max = 0;
 			$.each(data, function( index, value ) {
@@ -23,8 +25,9 @@ Number.prototype.zeroPad = function(length) {
 			time_max = parseInt(time_max);
 
 			$.get(options.template_path, function(template) {
-				var rendered = Mustache.render(template, {events: [{name: "Ololo"}]});
-				this.append( rendered );
+				var rendered = Mustache.render(template, {events: [{name: "Ololo"}, {name: "Ololo2"}]});
+				console.log(rendered);
+				$(_this).append( rendered );
 			});
 
 			/*var $table = $( '<table />' );
