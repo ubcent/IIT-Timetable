@@ -12,9 +12,8 @@ Number.prototype.zeroPad = function(length) {
 				time_range: [8, 12]
 			}, options);
 			var _this = this;
-			var events = $.parseJSON(options.json);
-
 			if($.trim(options.json) == "") options.json = "[]";
+			var events = $.parseJSON(options.json);
 
 			events.sort(function(a, b) {
 				var m1 = a.time.split(':', 2), m2 = b.time.split(':', 2);
