@@ -6,6 +6,7 @@ module.exports = function(grunt) {
 			dist: {
 				src: [
 					'bower_components/jquery/dist/jquery.min.js',
+					'bower_components/mustache/mustache.min.js',
 					'js/libs/*.js', 
 					'js/global.js',
 				],
