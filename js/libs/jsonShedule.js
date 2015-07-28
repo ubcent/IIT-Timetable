@@ -3,7 +3,6 @@ Number.prototype.zeroPad = function(length) {
    return (new Array(length).join('0')+this).slice(length*-1);
 };
 (function( $ ) {
-	var template, partial;
 	var methods = {
 		init: function( options ) {
 			options = $.extend({
@@ -24,26 +23,40 @@ Number.prototype.zeroPad = function(length) {
 				return 0;
 			});
 
-			$.get(options.template_path, function(_template) {
-				template = _template;
-				$.get(options.partial_template_path, function(_partial) {
-					partial = _partial;
-					var rendered = Mustache.render(template, {events: events}, {event: partial});
-					$(_this).append( rendered );
+			$.get(options.template_path, function( template ) {
+				$.get(options.partial_template_path, function( partial ) {
+					$(_this).append( Mustache.render( template, {events: events}, {event: partial} ) );
 				});
 			});
 		}, 
 		add: function( options ) {
 			options = $.extend({
-				timec: "08:00",
-				dayw: "mo"
+				tsec: "08:00",
+				dayw: "mo",
+				partial_template_path: "views/event.mustache"
 			}, options);
-
-			var $div = $('<div class="event" />').append('<div class="time">' + options.start + '</div>').append('<div class="name">' + options.name + '</div>').append('<div class="duration">' + options.duration + '</div>');
-			$(this).find('tr.' + options.timec + 'time > td.' + options.dayw).append($div);
+			var _this = this;
+			$.get(options.partial_template_path, function( partial ) {
+				$(_this).find('tr[data-time="' + options.tsec + '"] > td.' + options.dayw).append( Mustache.render(partial, options) );
+				console.log(Mustache.render(partial, options));
+			});
 		},
 		parse: function( options ) {
-
+			options = $.extend({
+			}, options);
+			var events = [];
+			timeline = {};
+			$.each($('.timetable [data-propname="time"]'), function( index, value ) {
+				timeline["time"] = $(value).attr('data-time');
+				$.each($(value).find('[data-parent="true"]'), function( i, v ) {
+					timeline[$(v).attr('data-propname')] = {};
+					$.each($(v).find('[data-save="true"]'), function( _i, _v) {
+						timeline[$(v).attr('data-propname')][$(_v).attr('data-propname')] = $(_v).text();
+					});
+				});
+				events.push(timeline);
+			});
+			return events;
 		}
 	};
 	$.fn.jsonShedule = function( method ) {
