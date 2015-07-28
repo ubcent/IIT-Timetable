@@ -6,7 +6,8 @@
 		"js/build/timetable.js"
 	],
 	"dependencies": {
-		"jquery": "latest"
+		"jquery": "latest",
+	  	"mustache": "latest"
 	},
 	"authors": "Dmitry Bondarchuk <dvbondarchuk@gmail.com>"
 }
