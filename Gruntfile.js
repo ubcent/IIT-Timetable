@@ -3,21 +3,25 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     	concat: {
-			dist: {
+			vendor: {
 				src: [
 					'bower_components/jquery/dist/jquery.min.js',
 					'bower_components/mustache/mustache.min.js',
-					'js/libs/*.js', 
-					'js/global.js',
 				],
-				dest: 'js/build/timetable.js',
+				dest: 'js/build/vendor.js'
+			},
+			lib: {
+				src: [
+					'js/libs/*.js',
+				],
+				dest: 'js/build/jquery.jsonShedule.js'
 			}
 		},
     	
     	uglify: {
 			build: {
-				src: 'js/build/timetable.js',
-				dest: 'js/build/timetable.min.js'
+				src: 'js/build/jquery.jsonShedule.js',
+				dest: 'js/build/jquery.jsonShedule.min.js'
 			}
 		},
 
