@@ -10,13 +10,13 @@ Number.prototype.zeroPad = function(length) {
    return (new Array(length).join('0')+this).slice(length*-1);
 };
 (function( $ ) {
-	var days = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
-	var classes = ['mo', 'tu', 'we', 'th', 'fr', 'sat', 'san'];
+	var template, partial;
 	var methods = {
 		init: function( options ) {
 			options = $.extend({
 				json: "",
 				template_path: "views/table.mustache",
+				partial_template_path: "views/event.mustache",
 				time_range: [8, 12]
 			}, options);
 			var _this = this;
@@ -26,23 +26,23 @@ Number.prototype.zeroPad = function(length) {
 				var m1 = a.time.split(':', 2), m2 = b.time.split(':', 2);
 				m1 = parseInt(m1[0]) * 60 + parseInt(m1[1]);
 				m2 = parseInt(m2[0]) * 60 + parseInt(m2[1]);
-				if(m1 < m2) return 1;
-				if(m1 > m2) return -1;
+				if(m1 < m2) return -1;
+				if(m1 > m2) return 1;
 				return 0;
 			});
 
-			$.get(options.template_path, function(template) {
-				var rendered = Mustache.render(template, {events: events});
-				console.log(rendered);
-				$(_this).append( rendered );
+			$.get(options.template_path, function(_template) {
+				template = _template;
+				$.get(options.partial_template_path, function(_partial) {
+					partial = _partial;
+					var rendered = Mustache.render(template, {events: events}, {event: partial});
+					$(_this).append( rendered );
+				});
 			});
 		}, 
 		add: function( options ) {
 			options = $.extend({
-				name: "Без имени",
-				start: "08:00",
-				duration: "60",
-				timec: "8",
+				timec: "08:00",
 				dayw: "mo"
 			}, options);
 

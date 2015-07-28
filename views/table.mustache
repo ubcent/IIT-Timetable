@@ -4,67 +4,39 @@
     <tr>
         <td>{{time}}</td>
         <td class="mo">
-            <div class="event">
-                {{#mo}}
-                    <div class="time">{{start}}</div>
-                    <div class="name">{{name}}</div>
-                    <div class="duration">{{duration}}</div>
-                {{/mo}}
-            </div>
+            {{#mo}}
+                {{> event}}
+            {{/mo}}
         </td>
         <td class="tu">
-            <div class="event">
-                {{#tu}}
-                    <div class="time">{{start}}</div>
-                    <div class="name">{{name}}</div>
-                    <div class="duration">{{duration}}</div>
-                {{/tu}}
-            </div>
+            {{#tu}}
+                {{> event}}
+            {{/tu}}
         </td>
         <td class="we">
-            <div class="event">
-                {{#we}}
-                <div class="time">{{start}}</div>
-                <div class="name">{{name}}</div>
-                <div class="duration">{{duration}}</div>
-                {{/we}}
-            </div>
+            {{#we}}
+                {{> event}}
+            {{/we}}
         </td>
         <td class="th">
-            <div class="event">
-                {{#th}}
-                <div class="time">{{start}}</div>
-                <div class="name">{{name}}</div>
-                <div class="duration">{{duration}}</div>
-                {{/th}}
-            </div>
+            {{#th}}
+                {{> event}}
+            {{/th}}
         </td>
         <td class="fr">
-            <div class="event">
-                {{#fr}}
-                <div class="time">{{start}}</div>
-                <div class="name">{{name}}</div>
-                <div class="duration">{{duration}}</div>
-                {{/fr}}
-            </div>
+            {{#fr}}
+                {{> event}}
+            {{/fr}}
         </td>
         <td class="sat">
-            <div class="event">
-                {{#sat}}
-                <div class="time">{{start}}</div>
-                <div class="name">{{name}}</div>
-                <div class="duration">{{duration}}</div>
-                {{/sat}}
-            </div>
+            {{#sat}}
+                {{> event}}
+            {{/sat}}
         </td>
         <td class="san">
-            <div class="event">
-                {{#san}}
-                <div class="time">{{start}}</div>
-                <div class="name">{{name}}</div>
-                <div class="duration">{{duration}}</div>
-                {{/san}}
-            </div>
+            {{#san}}
+                {{> event}}
+            {{/san}}
         </td>
     </tr>
     {{/events}}

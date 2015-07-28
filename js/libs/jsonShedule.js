@@ -3,11 +3,13 @@ Number.prototype.zeroPad = function(length) {
    return (new Array(length).join('0')+this).slice(length*-1);
 };
 (function( $ ) {
+	var template, partial;
 	var methods = {
 		init: function( options ) {
 			options = $.extend({
 				json: "",
 				template_path: "views/table.mustache",
+				partial_template_path: "views/event.mustache",
 				time_range: [8, 12]
 			}, options);
 			var _this = this;
@@ -22,17 +24,18 @@ Number.prototype.zeroPad = function(length) {
 				return 0;
 			});
 
-			$.get(options.template_path, function(template) {
-				var rendered = Mustache.render(template, {events: events});
-				$(_this).append( rendered );
+			$.get(options.template_path, function(_template) {
+				template = _template;
+				$.get(options.partial_template_path, function(_partial) {
+					partial = _partial;
+					var rendered = Mustache.render(template, {events: events}, {event: partial});
+					$(_this).append( rendered );
+				});
 			});
 		}, 
 		add: function( options ) {
 			options = $.extend({
-				name: "Без имени",
-				start: "08:00",
-				duration: "60",
-				timec: "8",
+				timec: "08:00",
 				dayw: "mo"
 			}, options);
 
