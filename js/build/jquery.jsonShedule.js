@@ -42,6 +42,7 @@ Number.prototype.zeroPad = function(length) {
 					$.get(options.template_path, function( template ) {
 						options[options.dayw] = options;
 						$(_this).find('[data-root="true"]').append(Mustache.render(template, options, {event: partial}));
+						$(_this).trigger('jsonShedule.eventAdded');
 					});
 				} else if($(_this).find('[data-time="' + options.tsec + '"]').length == 0) {
 					dif = 24;
@@ -57,9 +58,11 @@ Number.prototype.zeroPad = function(length) {
 						} else {
 							$(_this).find('[data-time="' + (this_time + dif).zeroPad() + ':00"]').before(Mustache.render(template, options, {event: partial}))
 						}
+						$(_this).trigger('jsonShedule.eventAdded');
 					});
 				} else {
 					$(_this).find('[data-time="' + options.tsec + '"] [data-propname="' + options.dayw + '"]').append( Mustache.render(partial, options) );
+					$(_this).trigger('jsonShedule.eventAdded');
 				}
 			});
 		},
