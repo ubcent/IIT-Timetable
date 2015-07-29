@@ -66,6 +66,11 @@ Number.prototype.zeroPad = function(length) {
 				}
 			});
 		},
+		change: function( options ) {
+			options = $.extend({
+
+			}, options);
+		},
 		parse: function( options ) {
 			options = $.extend({
 			}, options);
