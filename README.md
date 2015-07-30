@@ -34,5 +34,27 @@ May also be passed an optional options object which will extend the default valu
 	});
 </script>
 ```
-# Advanced
-## Options
+## Advanced
+### Options
+Options provide a simple mechanism to extend/change view and behavior of timetable. Example:
+```javascript
+<script>
+	$(function() {
+		// Set source of a timetable
+		var json_string = $('#json_input').val();
+		$('.timetable').jsonShedule({
+			json: json_string
+		});
+
+		// Set single event mustache partial template. Default - views/event.mustache
+		$('.timetable').jsonShedule({
+			partial_template_path: "views/event.mustache"
+		});
+
+		// Set table mustache template. Default - views/table.mustache
+		$('.timetable').jsonShedule({
+			template_path: "views/table.mustache"
+		});
+	});
+</script>
+```
