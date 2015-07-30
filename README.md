@@ -34,7 +34,7 @@ May also be passed an optional options object which will extend the default valu
 	});
 </script>
 ```
-Json format example:
+JSON format example:
 ```json
 [
   {
@@ -117,6 +117,25 @@ Options provide a simple mechanism to extend/change view and behavior of timetab
 			template_path: "views/table.mustache"
 		});
 	});
+</script>
+```
+### Methods
+Methods provide a simple mechanism to add and parse timetable. Example:
+```html
+<script>
+	$('.timetable').jsonShedule('add', {
+		// Time section
+		tsec: "08:00",
+		// Day of week
+		dayw: "mo",
+		// Table row mustache template - optional
+		partial_template_path: "views/event.mustache",
+		// Full table mustache template - optional
+		template_path: "views/timeline.mustache"
+	});
+
+	// Returns table view in JSON format
+	var json_string = $('.timetable').jsonShedule('parse');
 </script>
 ```
 ## Bug tracker
