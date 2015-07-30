@@ -24,7 +24,7 @@ Initialise the script like this:
 </script>
 ```
 May also be passed an optional options object which will extend the default values. Example:
-```javascript
+```html
 <script>
 	$(function() {
 		var json_string = $('#json_input').val();
@@ -37,7 +37,7 @@ May also be passed an optional options object which will extend the default valu
 ## Advanced
 ### Options
 Options provide a simple mechanism to extend/change view and behavior of timetable. Example:
-```javascript
+```html
 <script>
 	$(function() {
 		// Set source of a timetable
