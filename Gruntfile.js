@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 					style: 'compressed'
 				},
 				files: {
-					'css/build/global.css': 'css/*.css'
+					'css/build/jquery.jsonShedule.css': 'css/*.css'
 				}
 			}
 		}
