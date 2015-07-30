@@ -41,26 +41,26 @@ Json format example:
     "time": "08:00",
     "mo": [
       {
+      	"name" : "Event 1",
         "start" : "8:00",
-        "duration" : "45",
-        "program_id" : "1235"
+        "duration" : "45"
       },
       {
+      	"name" : "Event 2",
         "start" : "8:30",
-        "duration" : "30",
-        "program_id" : "645"
+        "duration" : "30"
       }
     ],
     "tu": [
       {
+      	"name" : "Event 3",
         "start" : "8:00",
-        "duration" : "45",
-        "program_id" : "1235"
+        "duration" : "45"
       },
       {
+      	"name" : "Event 4",
         "start" : "8:30",
-        "duration" : "30",
-        "program_id" : "645"
+        "duration" : "30"
       }
     ]
 
@@ -69,26 +69,26 @@ Json format example:
     "time": "09:00",
     "mo": [
       {
+      	"name" : "Event 5",
         "start" : "9:00",
-        "duration" : "45",
-        "program_id" : "1235"
+        "duration" : "45"
       },
       {
+      	"name" : "Event 6",
         "start" : "9:30",
-        "duration" : "30",
-        "program_id" : "645"
+        "duration" : "30"
       }
     ],
     "tu": [
       {
+      	"name" : "Event 7",
         "start" : "8:00",
-        "duration" : "45",
-        "program_id" : "1235"
+        "duration" : "45"
       },
       {
+      	"name" : "Event 8",
         "start" : "8:30",
-        "duration" : "30",
-        "program_id" : "645"
+        "duration" : "30"
       }
     ]
 
