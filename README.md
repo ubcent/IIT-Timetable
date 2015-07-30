@@ -58,3 +58,5 @@ Options provide a simple mechanism to extend/change view and behavior of timetab
 	});
 </script>
 ```
+## Bug tracker
+Have a bug? Please create an issue on GitHub at https://github.com/ubcent/gym-timetable/issues
