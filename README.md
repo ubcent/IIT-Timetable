@@ -15,9 +15,24 @@ To get started, download the plugin, unzip it and copy files to your website/app
     <script type="text/javascript" src="/js/jquery.jsonShedule.min.js"></script>
 </head>
 ```
-
+Initialise the script like this:
 ```javascript
-$(selector).jsonShedule([options]);
+<script>
+	$(function() {
+		$('.timetable').jsonShedule();
+	});
+</script>
 ```
-
+May also be passed an optional options object which will extend the default values. Example:
+```javascript
+<script>
+	$(function() {
+		var json_string = $('#json_input').val();
+		$('.timetable').jsonShedule({
+			json: json_string
+		});
+	});
+</script>
+```
+# Advanced
 ## Options
