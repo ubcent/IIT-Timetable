@@ -142,5 +142,6 @@ Methods provide a simple mechanism to add and parse timetable. Example:
 * Time formats
 * Plugin events
 * Remove method
+
 ## Bug tracker
 Have a bug? Please create an issue on GitHub at https://github.com/ubcent/gym-timetable/issues
