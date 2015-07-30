@@ -16,7 +16,7 @@ To get started, download the plugin, unzip it and copy files to your website/app
 </head>
 ```
 Initialise the script like this:
-```javascript
+```html
 <script>
 	$(function() {
 		$('.timetable').jsonShedule();
@@ -33,6 +33,67 @@ May also be passed an optional options object which will extend the default valu
 		});
 	});
 </script>
+```
+Json format example:
+```json
+[
+  {
+    "time": "08:00",
+    "mo": [
+      {
+        "start" : "8:00",
+        "duration" : "45",
+        "program_id" : "1235"
+      },
+      {
+        "start" : "8:30",
+        "duration" : "30",
+        "program_id" : "645"
+      }
+    ],
+    "tu": [
+      {
+        "start" : "8:00",
+        "duration" : "45",
+        "program_id" : "1235"
+      },
+      {
+        "start" : "8:30",
+        "duration" : "30",
+        "program_id" : "645"
+      }
+    ]
+
+  },
+  {
+    "time": "09:00",
+    "mo": [
+      {
+        "start" : "9:00",
+        "duration" : "45",
+        "program_id" : "1235"
+      },
+      {
+        "start" : "9:30",
+        "duration" : "30",
+        "program_id" : "645"
+      }
+    ],
+    "tu": [
+      {
+        "start" : "8:00",
+        "duration" : "45",
+        "program_id" : "1235"
+      },
+      {
+        "start" : "8:30",
+        "duration" : "30",
+        "program_id" : "645"
+      }
+    ]
+
+  }
+]
 ```
 ## Advanced
 ### Options
