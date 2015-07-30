@@ -101,18 +101,18 @@ Options provide a simple mechanism to extend/change view and behavior of timetab
 ```html
 <script>
 	$(function() {
-		// Set source of a timetable
+		// Initialization with source of a timetable
 		var json_string = $('#json_input').val();
 		$('.timetable').jsonShedule({
 			json: json_string
 		});
 
-		// Set single event mustache partial template. Default - views/event.mustache
+		// Initialization with single event mustache partial template. Default - views/event.mustache
 		$('.timetable').jsonShedule({
 			partial_template_path: "views/event.mustache"
 		});
 
-		// Set table mustache template. Default - views/table.mustache
+		// Initialization with table mustache template. Default - views/table.mustache
 		$('.timetable').jsonShedule({
 			template_path: "views/table.mustache"
 		});
