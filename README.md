@@ -95,6 +95,7 @@ JSON format example:
   }
 ]
 ```
+Day of week keys: mo, tu, we, th, fr, sat, san
 ## Advanced
 ### Options
 Options provide a simple mechanism to extend/change view and behavior of timetable. Example:
