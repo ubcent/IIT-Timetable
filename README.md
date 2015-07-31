@@ -140,7 +140,7 @@ Methods provide a simple mechanism to add and parse timetable. Example:
 </script>
 ```
 ## Todo
-* Time formats
+* Time format option
 * Plugin events
 * Remove method
 * Row sparseness option
