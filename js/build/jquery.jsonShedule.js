@@ -8,20 +8,33 @@ Number.prototype.zeroPad = function(length) {
 			options = $.extend({
 				json: "[]",
 				template_path: "views/table.mustache",
-				partial_template_path: "views/event.mustache"
+				partial_template_path: "views/event.mustache",
+				multi: false
 			}, options);
 			var _this = this;
 			if($.trim(options.json) == "") options.json = "[]";
 			var events = $.parseJSON(options.json);
-
-			events.sort(function(a, b) {
-				var m1 = a.time.split(':', 2), m2 = b.time.split(':', 2);
-				m1 = parseInt(m1[0]) * 60 + parseInt(m1[1]);
-				m2 = parseInt(m2[0]) * 60 + parseInt(m2[1]);
-				if(m1 < m2) return -1;
-				if(m1 > m2) return 1;
-				return 0;
-			});
+			if(options.multi) {
+				$.each(events, function( index, value ) {
+					value.sort(function(a, b) {
+						var m1 = a.time.split(':', 2), m2 = b.time.split(':', 2);
+						m1 = parseInt(m1[0]) * 60 + parseInt(m1[1]);
+						m2 = parseInt(m2[0]) * 60 + parseInt(m2[1]);
+						if(m1 < m2) return -1;
+						if(m1 > m2) return 1;
+						return 0;
+					});
+				});
+			} else {
+				events.sort(function(a, b) {
+					var m1 = a.time.split(':', 2), m2 = b.time.split(':', 2);
+					m1 = parseInt(m1[0]) * 60 + parseInt(m1[1]);
+					m2 = parseInt(m2[0]) * 60 + parseInt(m2[1]);
+					if(m1 < m2) return -1;
+					if(m1 > m2) return 1;
+					return 0;
+				});	
+			}
 
 			$.get(options.template_path, function( template ) {
 				$.get(options.partial_template_path, function( partial ) {
@@ -68,7 +81,7 @@ Number.prototype.zeroPad = function(length) {
 		},
 		change: function( options ) {
 			options = $.extend({
-				
+
 			}, options);
 		},
 		parse: function( options ) {
