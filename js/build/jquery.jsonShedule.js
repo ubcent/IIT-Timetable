@@ -42,6 +42,7 @@ Number.prototype.zeroPad = function(length) {
 					});
 				});	
 			}
+			return this;
 		}, 
 		add: function( options ) {
 			options = $.extend({
