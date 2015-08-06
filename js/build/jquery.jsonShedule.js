@@ -15,32 +15,33 @@ Number.prototype.zeroPad = function(length) {
 			if($.trim(options.json) == "") options.json = "[]";
 			var events = $.parseJSON(options.json);
 			if(options.multi) {
-				$.each(events, function( index, value ) {
-					value.sort(function(a, b) {
-						var m1 = a.time.split(':', 2), m2 = b.time.split(':', 2);
-						m1 = parseInt(m1[0]) * 60 + parseInt(m1[1]);
-						m2 = parseInt(m2[0]) * 60 + parseInt(m2[1]);
-						if(m1 < m2) return -1;
-						if(m1 > m2) return 1;
-						return 0;
+				/* TODO: Sorting */
+				var buf = [];
+				$.get(options.template_path, function( template ) {
+					$.get(options.partial_template_path, function( partial ) {
+						async.forEachOf(events, function( value, index, callback ) {
+							buf.push({"index": index, "name": value[value.length - 1].basename});
+							$(_this).append( Mustache.render( template, {events: value}, {event: partial} ) );
+							callback();
+						}, function( err ) {
+							if( err ) console.error( err.message );
+
+							$.get("views/menu.mustache", function( template ) {
+								$(_this).prepend( Mustache.render(template, {li: buf}) );
+								$(_this).trigger('jsonShedule.ready');
+							});	
+						});
 					});
 				});
 			} else {
-				events.sort(function(a, b) {
-					var m1 = a.time.split(':', 2), m2 = b.time.split(':', 2);
-					m1 = parseInt(m1[0]) * 60 + parseInt(m1[1]);
-					m2 = parseInt(m2[0]) * 60 + parseInt(m2[1]);
-					if(m1 < m2) return -1;
-					if(m1 > m2) return 1;
-					return 0;
+				/* TODO: Sorting */
+				$.get(options.template_path, function( template ) {
+					$.get(options.partial_template_path, function( partial ) {
+						$(_this).append( Mustache.render( template, {events: events}, {event: partial} ) );
+						$(_this).trigger('jsonShedule.ready');
+					});
 				});	
 			}
-
-			$.get(options.template_path, function( template ) {
-				$.get(options.partial_template_path, function( partial ) {
-					$(_this).append( Mustache.render( template, {events: events}, {event: partial} ) );
-				});
-			});
 		}, 
 		add: function( options ) {
 			options = $.extend({
