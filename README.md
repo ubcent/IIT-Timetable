@@ -4,6 +4,7 @@ An simple jQuery plugin that generates timetables from json string
 ## Requirements
 * jQuery
 * Mustache
+* Async
 
 ## Usage
 To get started, download the plugin, unzip it and copy files to your website/application directory. Load files in the section of your HTML document. Make sure you also add the jQuery and Mustache.js libraries.
@@ -137,6 +138,18 @@ Methods provide a simple mechanism to add and parse timetable. Example:
 
 	// Returns table view in JSON format
 	var json_string = $('.timetable').jsonShedule('parse');
+</script>
+```
+###Events
+```html
+This event occurs when schedule view is ready.
+<script>
+  var json_string = $('#json_input').val();
+  $('.timetable').jsonShedule({
+    json: json_string
+  }).on('jsonShedule.ready', function( event ) {
+    // Your code here
+  });
 </script>
 ```
 ## Todo
