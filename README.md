@@ -142,8 +142,8 @@ Methods provide a simple mechanism to add and parse timetable. Example:
 </script>
 ```
 ###Events
-```html
 This event occurs when schedule view is ready.
+```html
 <script>
   var json_string = $('#json_input').val();
   $('.timetable').jsonShedule({
